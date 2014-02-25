@@ -31,15 +31,14 @@ public class TipCalculatorActivity extends Activity {
 				String sumStr = billAmountTxt.getText().toString();
 				if (sumStr.length() == 0) {
 					tipResultText.setText("Please insert an amount");
-//					Log.d("myDebug", "going to return because of an empty string");
 					return;
 				}
-				float sum = Float.parseFloat(sumStr);
-				sum = sum * 12 / 100;
+				float tipAmount = Float.parseFloat(sumStr);
+				tipAmount = (float) (0.12 * tipAmount);
 				if (roundTipCheck.isChecked()) {
-					sum = Math.round(sum);
+					tipAmount = Math.round(tipAmount);
 				}
-				tipResultText.setText("Tip: $" + Float.toString(sum));
+				tipResultText.setText("Tip: $" + Float.toString(tipAmount));
 			};
 		});
 	}
