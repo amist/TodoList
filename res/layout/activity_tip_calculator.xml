@@ -9,10 +9,12 @@
     tools:context=".TipCalculatorActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/billAmountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bill" />
+        android:layout_alignTop="@+id/edtBillAmount"
+        android:text="@string/billAmountTitle"
+        android:textSize="18sp" />
 	
 	<EditText
 	    android:id="@+id/edtBillAmount"
@@ -28,8 +30,8 @@
         android:id="@+id/chkRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/billAmountTitle"
+        android:layout_below="@+id/billAmountTitle"
         android:layout_marginTop="14dp"
         android:text="@string/roundCheakBoxText" />
 
@@ -45,6 +47,7 @@
         android:id="@+id/txtTipResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnCalculate"
         android:layout_below="@+id/btnCalculate"
         android:text="" />
 

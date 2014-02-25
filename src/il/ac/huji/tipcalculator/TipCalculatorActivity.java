@@ -19,10 +19,10 @@ public class TipCalculatorActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tip_calculator);
-		final Button calculateButton = (Button) findViewById(R.id.btnCalculate);
-		final TextView tipResultText = (TextView) findViewById(R.id.txtTipResult);
 		final EditText billAmountTxt = (EditText) findViewById(R.id.edtBillAmount);
 		final CheckBox roundTipCheck = (CheckBox) findViewById(R.id.chkRound);
+		final Button calculateButton = (Button) findViewById(R.id.btnCalculate);
+		final TextView tipResultText = (TextView) findViewById(R.id.txtTipResult);
 
 		calculateButton.setOnClickListener(new OnClickListener() {
 
