@@ -1,10 +1,8 @@
 package il.ac.huji.todolist;
 
 import java.util.List;
-import java.util.Objects;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -12,9 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class ToDoAdapter<E> extends ArrayAdapter<E> {

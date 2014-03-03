@@ -1,15 +1,11 @@
 package il.ac.huji.todolist;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.res.Resources;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View.OnLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +19,7 @@ public class TodoListManagerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_list_manager);
 
-		Resources res = getResources();
+//		Resources res = getResources();
 
 		toDoList = new ArrayList<String>();
 		ListView list = (ListView) findViewById(R.id.lstTodoItems);
