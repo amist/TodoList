@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TipCalculator</string>
+    <string name="app_name">Todo List</string>
     <string name="action_settings">Settings</string>
-    <string name="billAmountTitle">Bill Amount</string>
-    <string name="roundCheakBoxText">Round to nearest dollar</string>
-    <string name="calc">Calculate</string>
-    <string name="enterPricePlaceholder">Enter the price</string>
-
+    <string name="add_string">Add</string>
+    <string name="hello_world">Hello world!</string>
+	<string-array name="countris">
+	    <item >israel</item>
+	</string-array>
+	<string-array name="cities">
+	    <item>jerusalem</item>
+	    <item>tel aviv</item>
+	    <item>beit el</item>
+	</string-array>
+	
 </resources>
