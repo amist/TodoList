@@ -18,9 +18,6 @@ public class TodoListManagerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_list_manager);
-
-//		Resources res = getResources();
-
 		toDoList = new ArrayList<String>();
 		ListView list = (ListView) findViewById(R.id.lstTodoItems);
 
@@ -32,7 +29,6 @@ public class TodoListManagerActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.todo_list_manager, menu);
 		return true;
 	}
