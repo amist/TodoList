@@ -3,7 +3,9 @@ package il.ac.huji.todolist;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -33,16 +35,35 @@ public class TodoListManagerActivity extends Activity {
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menuItemAdd:
-			TextView addtext = (TextView) findViewById(R.id.edtNewItem);
-			String txt = addtext.getText().toString();
-			adaptToDO.add(txt);
-			adaptToDO.notifyDataSetChanged();
-			addtext.setText("");
+			// TextView addtext = (TextView) findViewById(R.id.edtNewItem);
+			// String txt = addtext.getText().toString();
+			// adaptToDO.add(txt);
+			// adaptToDO.notifyDataSetChanged();
+			// addtext.setText("");
+			Intent intent = new Intent(this, AddNewTodoItemActivity.class);
+			// startActivity(intent);
+			startActivityForResult(intent, 1);
 		}
 		return true;
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+
+			if (resultCode == RESULT_OK) {
+				String text = data.getStringExtra("text");
+				String date = data.getStringExtra("date");
+				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
+				adaptToDO.add(text + " - " + date);
+				adaptToDO.notifyDataSetChanged();
+			}
+			if (resultCode == RESULT_CANCELED) {
+			}
+		}
 	}
 
 }
