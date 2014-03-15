@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,9 +43,15 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 		v.setOnLongClickListener(new android.view.View.OnLongClickListener() {
 
 			public boolean onLongClick(View view) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
+				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+				builder.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						remove(getItem(position));
+					}
+				});
+				builder.setPositiveButton("call button", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
 					}
 				});
 				TextView title = new TextView(getContext());

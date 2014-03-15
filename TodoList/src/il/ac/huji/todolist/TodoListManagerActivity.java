@@ -39,13 +39,7 @@ public class TodoListManagerActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menuItemAdd:
-			// TextView addtext = (TextView) findViewById(R.id.edtNewItem);
-			// String txt = addtext.getText().toString();
-			// adaptToDO.add(txt);
-			// adaptToDO.notifyDataSetChanged();
-			// addtext.setText("");
 			Intent intent = new Intent(this, AddNewTodoItemActivity.class);
-			// startActivity(intent);
 			startActivityForResult(intent, 1);
 		}
 		return true;
