@@ -49,11 +49,12 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 						remove(getItem(position));
 					}
 				});
-				builder.setPositiveButton("call button", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
-					}
-				});
+				if (isCallItem(getItem(position)))
+					builder.setPositiveButton("call button", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
+						}
+					});
 				TextView title = new TextView(getContext());
 				title.setText(getItem(position).toString());
 				title.setBackgroundColor(Color.DKGRAY);
@@ -69,6 +70,13 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 			}
 		});
 		return v;
+	}
+	
+	public boolean isCallItem(E item) {
+		String text = item.toString();
+		if (text.startsWith("call"))
+			return true;
+		return false;
 	}
 
 }
