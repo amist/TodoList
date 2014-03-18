@@ -29,11 +29,14 @@ public final class R {
         public static final int btnOK=0x7f080002;
         public static final int datePicker=0x7f080001;
         public static final int edtNewItem=0x7f080000;
-        public static final int img=0x7f080005;
-        public static final int lstTodoItems=0x7f080004;
-        public static final int menuItemAdd=0x7f080008;
-        public static final int txtTodoDueDate=0x7f080007;
-        public static final int txtTodoTitle=0x7f080006;
+        public static final int img=0x7f080008;
+        public static final int itemMenuTitle=0x7f080004;
+        public static final int lstTodoItems=0x7f080007;
+        public static final int menuItemAdd=0x7f08000b;
+        public static final int menuItemCall=0x7f080006;
+        public static final int menuItemDelete=0x7f080005;
+        public static final int txtTodoDueDate=0x7f08000a;
+        public static final int txtTodoTitle=0x7f080009;
     }
     public static final class layout {
         public static final int activity_add_new_todo_item=0x7f030000;
@@ -50,6 +53,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int cancelBtnString=0x7f050004;
         public static final int insertStringHint=0x7f050005;
+        public static final int menuItemDelete=0x7f050007;
         public static final int okBtnString=0x7f050003;
         public static final int todoListTitle=0x7f050006;
     }

@@ -49,37 +49,43 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 		v.setOnLongClickListener(new android.view.View.OnLongClickListener() {
 
 			public boolean onLongClick(View view) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-				builder.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						remove(getItem(position));
-					}
-				});
-				if (isCallItem(getItem(position))) {
-					TodoRow row = (TodoRow) getItem(position);
-					String text = row.getText();
-					builder.setPositiveButton(text, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
-							TodoRow row = (TodoRow) getItem(position);
-							String number = row.getText().substring(5);
-							Log.e("myDebug", "number to call: |" + number + "|");
-							Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
-							getContext().startActivity(dial);
-						}
-					});
-				}
-				TextView title = new TextView(getContext());
-				title.setText(getItem(position).toString());
-				title.setBackgroundColor(Color.DKGRAY);
-				title.setPadding(10, 10, 10, 10);
-				title.setGravity(Gravity.CENTER);
-				title.setTextColor(Color.WHITE);
-				title.setTextSize(20);
-				builder.setCustomTitle(title);
-				AlertDialog delDialog = builder.create();
-
-				delDialog.show();
+				Intent intent = new Intent(getContext(), ItemMenuActivity.class);
+				TodoRow row = (TodoRow) getItem(position);
+				intent.putExtra("title", row.getText());
+				intent.putExtra("date", row.getDate());
+				intent.putExtra("position", position);
+				((Activity) getContext()).startActivityForResult(intent, 2);
+//				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//				builder.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//						remove(getItem(position));
+//					}
+//				});
+//				if (isCallItem(getItem(position))) {
+//					TodoRow row = (TodoRow) getItem(position);
+//					String text = row.getText();
+//					builder.setPositiveButton(text, new DialogInterface.OnClickListener() {
+//						public void onClick(DialogInterface dialog, int which) {
+//							Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
+//							TodoRow row = (TodoRow) getItem(position);
+//							String number = row.getText().substring(5);
+//							Log.e("myDebug", "number to call: |" + number + "|");
+//							Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+//							getContext().startActivity(dial);
+//						}
+//					});
+//				}
+//				TextView title = new TextView(getContext());
+//				title.setText(getItem(position).toString());
+//				title.setBackgroundColor(Color.DKGRAY);
+//				title.setPadding(10, 10, 10, 10);
+//				title.setGravity(Gravity.CENTER);
+//				title.setTextColor(Color.WHITE);
+//				title.setTextSize(20);
+//				builder.setCustomTitle(title);
+//				AlertDialog delDialog = builder.create();
+//
+//				delDialog.show();
 				return true;
 			}
 		});

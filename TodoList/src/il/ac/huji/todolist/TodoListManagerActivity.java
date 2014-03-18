@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -47,7 +48,6 @@ public class TodoListManagerActivity extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1) {
-
 			if (resultCode == RESULT_OK) {
 				String text = data.getStringExtra("text");
 				String date = data.getStringExtra("date");
@@ -60,6 +60,26 @@ public class TodoListManagerActivity extends Activity {
 			}
 			if (resultCode == RESULT_CANCELED) {
 			}
+		}
+		if (requestCode == 2) {
+			String text = data.getStringExtra("text");
+			String date = data.getStringExtra("date");
+			String action = data.getStringExtra("action");
+			Log.e("myDebug", "onActivityResult, after deletion. text = " + text + ", date = " + date);
+			if (action.equals("delete")) {
+				for (TodoRow row : toDoList) {
+					if (row.toString().equals(text + " - " + date))
+						adaptToDO.remove(row);
+					adaptToDO.notifyDataSetChanged();
+				}
+			}
+			if (action.equals("call")) {
+				String number = text.substring(5);
+				Log.e("myDebug", "number to call: |" + number + "|");
+				Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+				startActivity(dial);
+			}
+			// toDoList.remove();
 		}
 	}
 

@@ -9,20 +9,47 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ItemMenuActivity extends Activity {
-
-	private ArrayList<String> toDoList;
-	private ToDoAdapter<String> adaptToDO;
+public class ItemMenuActivity extends Activity implements OnClickListener {
+	
+	protected String todoTitle = "";
+	protected String todoDate = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_menu);
+		Bundle b = getIntent().getExtras();
+//		Log.e("myDebug", "in onCreate of ItemMenuActivity. title = " + b.getString("title"));
+		String text = b.getString("title");
+		this.todoTitle = text;
+		String date = b.getString("date");
+		this.todoDate = date;
+		TextView title = (TextView) findViewById(R.id.itemMenuTitle);
+		title.setText(text);
+		Button call = (Button) findViewById(R.id.menuItemCall);
+		call.setOnClickListener(this);
+		call.setText(text);
+		if (isCallText(text)) {
+			call.setVisibility(View.VISIBLE);
+		} else {
+			call.setVisibility(View.GONE);
+		}
+		Button delete = (Button) findViewById(R.id.menuItemDelete);
+		delete.setOnClickListener(this);
 	}
+	
+//	public void onDelete() {
+//		Intent returnIntent = new Intent();
+//		returnIntent.putExtra("text", "some text");
+//		setResult(RESULT_OK, returnIntent);
+//		finish();
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,24 +72,48 @@ public class ItemMenuActivity extends Activity {
 		return false;
 	}
 
-//	public void addItemToList(View view) {
-//		TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
-//		String addItemText = addItemTextView.getText().toString();
-//		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-//		int year = datePicker.getYear();
-//		int month = datePicker.getMonth() + 1;
-//		int day = datePicker.getDayOfMonth();
-//		String dateString = day + "/" + month + "/" + year;
-//		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
-//		Intent returnIntent = new Intent();
-//		returnIntent.putExtra("text", addItemText);
-//		returnIntent.putExtra("date", dateString);
-//		setResult(RESULT_OK, returnIntent);
-//		finish();
-//	}
+	// public void addItemToList(View view) {
+	// TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
+	// String addItemText = addItemTextView.getText().toString();
+	// DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+	// int year = datePicker.getYear();
+	// int month = datePicker.getMonth() + 1;
+	// int day = datePicker.getDayOfMonth();
+	// String dateString = day + "/" + month + "/" + year;
+	// Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = "
+	// + dateString);
+	// Intent returnIntent = new Intent();
+	// returnIntent.putExtra("text", addItemText);
+	// returnIntent.putExtra("date", dateString);
+	// setResult(RESULT_OK, returnIntent);
+	// finish();
+	// }
 
 	public void selfDestruct(View view) {
 		Log.e("myDebug", "in selfDestruct");
+		finish();
+	}
+	
+	public boolean isCallText(String text) {
+		if (text.startsWith("call"))
+			return true;
+		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		Log.e("myDebug", "in onClick");
+		Log.e("myDebug", "pressed delete");
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("text", this.todoTitle);
+		returnIntent.putExtra("date", this.todoDate);
+		if (v.getId()==R.id.menuItemDelete) {
+			returnIntent.putExtra("action", "delete");
+		}
+		if (v.getId()==R.id.menuItemCall) {
+			returnIntent.putExtra("action", "call");
+		}
+		setResult(RESULT_OK, returnIntent);
 		finish();
 	}
 

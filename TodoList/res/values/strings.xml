@@ -8,5 +8,6 @@
     <string name="cancelBtnString">Cancel</string>
     <string name="insertStringHint">Insert new item</string>
     <string name="todoListTitle">To Do list:</string>
+    <string name="menuItemDelete">Delete Item</string>
 	
 </resources>

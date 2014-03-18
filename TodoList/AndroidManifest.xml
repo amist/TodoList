@@ -21,9 +21,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+            <action android:name="android.intent.action.DIAL" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:scheme="“tel”" />
+        </intent-filter>
         </activity>
+        
         <activity
             android:name="il.ac.huji.todolist.AddNewTodoItemActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        
+        <activity
+            android:name="il.ac.huji.todolist.ItemMenuActivity"
             android:theme="@android:style/Theme.Dialog" />
 
         <intent-filter>

@@ -9,36 +9,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ItemMenuActivity" >
 
-    <EditText
-        android:id="@+id/edtNewItem"
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/itemMenuTitle"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:hint="@string/insertStringHint" />
+        android:paddingLeft="24dp"
+        android:text=""
+        android:textSize="23sp"
+        android:textStyle="italic" />
 
-    <DatePicker
-        android:id="@+id/datePicker"
+    <Button
+        android:id="@+id/menuItemDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:calendarViewShown="false" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:onClick="deleteItem"
+        android:text="@string/menuItemDelete" />
+    
+    <Button
+        android:id="@+id/menuItemCall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btnOK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addItemToList"
-            android:text="@string/okBtnString" />
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="selfDestruct"
-            android:text="@string/cancelBtnString" />
-    </LinearLayout>
+        android:onClick="call"
+        android:text="" />
 
 </LinearLayout>
