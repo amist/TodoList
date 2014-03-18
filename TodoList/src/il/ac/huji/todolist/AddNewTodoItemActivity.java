@@ -21,7 +21,7 @@ public class AddNewTodoItemActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item_menu);
+		setContentView(R.layout.activity_add_new_todo_item);
 	}
 
 	@Override
