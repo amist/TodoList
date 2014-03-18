@@ -13,17 +13,17 @@ import android.widget.TextView;
 
 public class TodoListManagerActivity extends Activity {
 
-	private ArrayList<String> toDoList;
-	private ToDoAdapter<String> adaptToDO;
+	private ArrayList<TodoRow> toDoList;
+	private ToDoAdapter<TodoRow> adaptToDO;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_list_manager);
-		toDoList = new ArrayList<String>();
+		toDoList = new ArrayList<TodoRow>();
 		ListView list = (ListView) findViewById(R.id.lstTodoItems);
 
-		adaptToDO = new ToDoAdapter<String>(this, android.R.layout.simple_list_item_1, toDoList);
+		adaptToDO = new ToDoAdapter<TodoRow>(this, android.R.layout.simple_list_item_1, toDoList);
 
 		list.setAdapter(adaptToDO);
 
@@ -52,7 +52,10 @@ public class TodoListManagerActivity extends Activity {
 				String text = data.getStringExtra("text");
 				String date = data.getStringExtra("date");
 				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
-				adaptToDO.add(text + " - " + date);
+				TodoRow row = new TodoRow();
+				row.setText(text);
+				row.setDate(date);
+				adaptToDO.add(row);
 				adaptToDO.notifyDataSetChanged();
 			}
 			if (resultCode == RESULT_CANCELED) {

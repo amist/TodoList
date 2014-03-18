@@ -2,10 +2,13 @@ package il.ac.huji.todolist;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,8 +35,11 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 
 		}
 		if (v != null) {
-			TextView title = (TextView) v.findViewById(R.id.title);
-			title.setText(getItem(position).toString());
+			TodoRow row = (TodoRow) getItem(position);
+			TextView title = (TextView) v.findViewById(R.id.txtTodoTitle);
+			title.setText(row.getText());
+			TextView date = (TextView) v.findViewById(R.id.txtTodoDueDate);
+			date.setText(row.getDate());
 			if (position % 2 == 0)
 				title.setTextColor(Color.RED);
 			else
@@ -49,12 +55,20 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 						remove(getItem(position));
 					}
 				});
-				if (isCallItem(getItem(position)))
-					builder.setPositiveButton("call button", new DialogInterface.OnClickListener() {
+				if (isCallItem(getItem(position))) {
+					TodoRow row = (TodoRow) getItem(position);
+					String text = row.getText();
+					builder.setPositiveButton(text, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
+							TodoRow row = (TodoRow) getItem(position);
+							String number = row.getText().substring(5);
+							Log.e("myDebug", "number to call: |" + number + "|");
+							Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+							getContext().startActivity(dial);
 						}
 					});
+				}
 				TextView title = new TextView(getContext());
 				title.setText(getItem(position).toString());
 				title.setBackgroundColor(Color.DKGRAY);

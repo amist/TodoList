@@ -13,7 +13,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class AddNewTodoItemActivity extends Activity {
+public class ItemMenuActivity extends Activity {
 
 	private ArrayList<String> toDoList;
 	private ToDoAdapter<String> adaptToDO;
@@ -21,7 +21,7 @@ public class AddNewTodoItemActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item_menu);
+		setContentView(R.layout.activity_add_new_todo_item);
 	}
 
 	@Override
@@ -45,21 +45,21 @@ public class AddNewTodoItemActivity extends Activity {
 		return false;
 	}
 
-	public void addItemToList(View view) {
-		TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
-		String addItemText = addItemTextView.getText().toString();
-		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-		int year = datePicker.getYear();
-		int month = datePicker.getMonth() + 1;
-		int day = datePicker.getDayOfMonth();
-		String dateString = day + "/" + month + "/" + year;
-		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
-		Intent returnIntent = new Intent();
-		returnIntent.putExtra("text", addItemText);
-		returnIntent.putExtra("date", dateString);
-		setResult(RESULT_OK, returnIntent);
-		finish();
-	}
+//	public void addItemToList(View view) {
+//		TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
+//		String addItemText = addItemTextView.getText().toString();
+//		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+//		int year = datePicker.getYear();
+//		int month = datePicker.getMonth() + 1;
+//		int day = datePicker.getDayOfMonth();
+//		String dateString = day + "/" + month + "/" + year;
+//		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
+//		Intent returnIntent = new Intent();
+//		returnIntent.putExtra("text", addItemText);
+//		returnIntent.putExtra("date", dateString);
+//		setResult(RESULT_OK, returnIntent);
+//		finish();
+//	}
 
 	public void selfDestruct(View view) {
 		Log.e("myDebug", "in selfDestruct");
