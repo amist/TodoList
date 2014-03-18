@@ -40,10 +40,13 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 			title.setText(row.getText());
 			TextView date = (TextView) v.findViewById(R.id.txtTodoDueDate);
 			date.setText(row.getDate());
-			if (position % 2 == 0)
+			if (position % 2 == 0) {
 				title.setTextColor(Color.RED);
-			else
+				date.setTextColor(Color.RED);
+			} else {
 				title.setTextColor(Color.BLUE);
+				date.setTextColor(Color.BLUE);
+			}
 		}
 
 		v.setOnLongClickListener(new android.view.View.OnLongClickListener() {
