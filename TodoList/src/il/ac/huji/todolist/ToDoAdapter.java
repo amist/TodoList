@@ -110,11 +110,11 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 		return v;
 	}
 	
-	public boolean isCallItem(E item) {
-		String text = item.toString();
-		if (text.startsWith("call"))
-			return true;
-		return false;
-	}
+//	public boolean isCallItem(E item) {
+//		String text = item.toString();
+//		if (text.startsWith("call"))
+//			return true;
+//		return false;
+//	}
 
 }
