@@ -1,6 +1,5 @@
 package il.ac.huji.todolist;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,13 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class AddNewTodoItemActivity extends Activity {
-
-//	private ArrayList<String> toDoList;
-//	private ToDoAdapter<String> adaptToDO;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +25,11 @@ public class AddNewTodoItemActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// getMenuInflater().inflate(R.menu.todo_list_manager, menu);
-		// return true;
 		return false;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// switch (item.getItemId()) {
-		// case R.id.menuItemAdd:
-		// TextView addtext = (TextView) findViewById(R.id.edtNewItem);
-		// String txt = addtext.getText().toString();
-		// adaptToDO.add(txt);
-		// adaptToDO.notifyDataSetChanged();
-		// addtext.setText("");
-		// }
-		// return true;
 		return false;
 	}
 
@@ -53,21 +37,16 @@ public class AddNewTodoItemActivity extends Activity {
 		TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
 		String addItemText = addItemTextView.getText().toString();
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-//		int year = datePicker.getYear();
-//		int month = datePicker.getMonth() + 1;
-//		int day = datePicker.getDayOfMonth();
+		
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
 		cal.set(Calendar.MONTH, datePicker.getMonth());
 		cal.set(Calendar.YEAR, datePicker.getYear());
 		Date date = new Date(cal.getTimeInMillis());
-//		String dateString = day + "/" + month + "/" + year;
-//		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
+		
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("title", addItemText);
-//		returnIntent.putExtra("dueDate", dateString);
 		returnIntent.putExtra("dueDate", date);
-		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + date);
 		setResult(RESULT_OK, returnIntent);
 		finish();
 	}

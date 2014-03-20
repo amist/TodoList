@@ -4,14 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,15 +42,8 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 			c.set(Calendar.MINUTE, 0);
 			c.set(Calendar.SECOND, 0);
 			c.set(Calendar.MILLISECOND, 0);
-//			int year = c.get(Calendar.YEAR);
-//			int month = c.get(Calendar.MONTH) + 1;
-//			int day = c.get(Calendar.DAY_OF_MONTH);
-//			String dateString = day + "/" + month + "/" + year;
-//			Log.e("myDebug", "in ToDoAdapter getView. now date = " + dateString);
-//			Log.e("myDebug", "in ToDoAdapter getView. row date = " + row.getDate());
 			
 			if (c.getTimeInMillis() > row.getDate().getTimeInMillis()) {
-//			if (position % 2 == 0) {
 				title.setTextColor(Color.RED);
 				date.setTextColor(Color.RED);
 			} else {
@@ -71,50 +59,12 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 				TodoRow row = (TodoRow) getItem(position);
 				intent.putExtra("title", row.getText());
 				intent.putExtra("dueDate", row.getDateString());
-				intent.putExtra("position", position);
+				intent.putExtra("position", String.valueOf(position));
 				((Activity) getContext()).startActivityForResult(intent, 2);
-//				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//				builder.setNegativeButton("Delete Item", new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int which) {
-//						remove(getItem(position));
-//					}
-//				});
-//				if (isCallItem(getItem(position))) {
-//					TodoRow row = (TodoRow) getItem(position);
-//					String text = row.getText();
-//					builder.setPositiveButton(text, new DialogInterface.OnClickListener() {
-//						public void onClick(DialogInterface dialog, int which) {
-//							Log.e("myDebug", "clicked on call button of item " + getItem(position).toString());
-//							TodoRow row = (TodoRow) getItem(position);
-//							String number = row.getText().substring(5);
-//							Log.e("myDebug", "number to call: |" + number + "|");
-//							Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
-//							getContext().startActivity(dial);
-//						}
-//					});
-//				}
-//				TextView title = new TextView(getContext());
-//				title.setText(getItem(position).toString());
-//				title.setBackgroundColor(Color.DKGRAY);
-//				title.setPadding(10, 10, 10, 10);
-//				title.setGravity(Gravity.CENTER);
-//				title.setTextColor(Color.WHITE);
-//				title.setTextSize(20);
-//				builder.setCustomTitle(title);
-//				AlertDialog delDialog = builder.create();
-//
-//				delDialog.show();
 				return true;
 			}
 		});
 		return v;
 	}
-	
-//	public boolean isCallItem(E item) {
-//		String text = item.toString();
-//		if (text.startsWith("call"))
-//			return true;
-//		return false;
-//	}
 
 }

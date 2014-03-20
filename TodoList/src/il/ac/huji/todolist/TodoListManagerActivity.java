@@ -7,11 +7,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class TodoListManagerActivity extends Activity {
 
@@ -53,9 +51,7 @@ public class TodoListManagerActivity extends Activity {
 		if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
 				String text = data.getStringExtra("title");
-				// String date = data.getStringExtra("dueDate");
 				Date date = (Date) data.getSerializableExtra("dueDate");
-				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
 				TodoRow row = new TodoRow();
 				row.setText(text);
 				row.setDateFromDate(date);
@@ -69,23 +65,22 @@ public class TodoListManagerActivity extends Activity {
 			String text = data.getStringExtra("title");
 			String date = data.getStringExtra("dueDate");
 			String action = data.getStringExtra("action");
-			Log.e("myDebug", "onActivityResult, after deletion. text = " + text + ", date = " + date);
 			if (action.equals("delete")) {
+				Integer i = 0;
 				for (TodoRow row : toDoList) {
-					if (row.toString().equals(text + " - " + date)) {
+					if (i.toString().equals(data.getStringExtra("position"))) {
 						adaptToDO.remove(row);
 						adaptToDO.notifyDataSetChanged();
 						return;
 					}
+					i++;
 				}
 			}
 			if (action.equals("call")) {
 				String number = text.substring(5);
-				Log.e("myDebug", "number to call: |" + number + "|");
 				Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
 				startActivity(dial);
 			}
-			// toDoList.remove();
 		}
 	}
 
