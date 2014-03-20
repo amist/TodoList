@@ -97,7 +97,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 	}
 	
 	public boolean isCallText(String text) {
-		if (text.startsWith("call"))
+		if (text.toLowerCase().startsWith("call"))
 			return true;
 		return false;
 	}

@@ -16,18 +16,19 @@
         android:paddingLeft="24dp"
         android:text=""
         android:textSize="23sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/menuItemDelete"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="deleteItem"
         android:text="@string/menuItemDelete" />
     
     <Button
         android:id="@+id/menuItemCall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="call"
         android:text="" />
