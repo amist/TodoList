@@ -28,7 +28,7 @@ public class TodoRow {
 	}
 	
 	public String toString() {
-		return this.text + " - " + this.date;
+		return this.text + " - " + this.getDateString();
 	}
 	
 	public void setDateFromString(String strDate) {

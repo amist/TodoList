@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class AddNewTodoItemActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_add_new_todo_item);
 	}
 

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_item_menu);
 		Bundle b = getIntent().getExtras();
 //		Log.e("myDebug", "in onCreate of ItemMenuActivity. title = " + b.getString("title"));

@@ -47,6 +47,8 @@ public class TodoListManagerActivity extends Activity {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (data == null)
+			return;
 		if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
 				String text = data.getStringExtra("text");
@@ -71,6 +73,7 @@ public class TodoListManagerActivity extends Activity {
 					if (row.toString().equals(text + " - " + date))
 						adaptToDO.remove(row);
 					adaptToDO.notifyDataSetChanged();
+					return;
 				}
 			}
 			if (action.equals("call")) {

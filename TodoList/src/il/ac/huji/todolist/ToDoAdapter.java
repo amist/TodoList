@@ -42,13 +42,17 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 			TextView date = (TextView) v.findViewById(R.id.txtTodoDueDate);
 			date.setText(row.getDateString());
 			
-			Calendar c = Calendar.getInstance(); 
-			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH) + 1;
-			int day = c.get(Calendar.DAY_OF_MONTH);
-			String dateString = day + "/" + month + "/" + year;
-			Log.e("myDebug", "in ToDoAdapter getView. now date = " + dateString);
-			Log.e("myDebug", "in ToDoAdapter getView. row date = " + row.getDate());
+			Calendar c = Calendar.getInstance();
+			c.set(Calendar.HOUR_OF_DAY, 0);
+			c.set(Calendar.MINUTE, 0);
+			c.set(Calendar.SECOND, 0);
+			c.set(Calendar.MILLISECOND, 0);
+//			int year = c.get(Calendar.YEAR);
+//			int month = c.get(Calendar.MONTH) + 1;
+//			int day = c.get(Calendar.DAY_OF_MONTH);
+//			String dateString = day + "/" + month + "/" + year;
+//			Log.e("myDebug", "in ToDoAdapter getView. now date = " + dateString);
+//			Log.e("myDebug", "in ToDoAdapter getView. row date = " + row.getDate());
 			
 			if (c.getTimeInMillis() > row.getDate().getTimeInMillis()) {
 //			if (position % 2 == 0) {
@@ -66,7 +70,7 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 				Intent intent = new Intent(getContext(), ItemMenuActivity.class);
 				TodoRow row = (TodoRow) getItem(position);
 				intent.putExtra("title", row.getText());
-				intent.putExtra("date", row.getDate());
+				intent.putExtra("date", row.getDateString());
 				intent.putExtra("position", position);
 				((Activity) getContext()).startActivityForResult(intent, 2);
 //				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
