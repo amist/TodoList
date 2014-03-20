@@ -54,7 +54,7 @@ public class TodoListManagerActivity extends Activity {
 				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
 				TodoRow row = new TodoRow();
 				row.setText(text);
-				row.setDate(date);
+				row.setDateFromString(date);
 				adaptToDO.add(row);
 				adaptToDO.notifyDataSetChanged();
 			}

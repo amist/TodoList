@@ -1,5 +1,6 @@
 package il.ac.huji.todolist;
 
+import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
@@ -39,13 +40,23 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 			TextView title = (TextView) v.findViewById(R.id.txtTodoTitle);
 			title.setText(row.getText());
 			TextView date = (TextView) v.findViewById(R.id.txtTodoDueDate);
-			date.setText(row.getDate());
-			if (position % 2 == 0) {
+			date.setText(row.getDateString());
+			
+			Calendar c = Calendar.getInstance(); 
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH) + 1;
+			int day = c.get(Calendar.DAY_OF_MONTH);
+			String dateString = day + "/" + month + "/" + year;
+			Log.e("myDebug", "in ToDoAdapter getView. now date = " + dateString);
+			Log.e("myDebug", "in ToDoAdapter getView. row date = " + row.getDate());
+			
+			if (c.getTimeInMillis() > row.getDate().getTimeInMillis()) {
+//			if (position % 2 == 0) {
 				title.setTextColor(Color.RED);
 				date.setTextColor(Color.RED);
 			} else {
-				title.setTextColor(Color.BLUE);
-				date.setTextColor(Color.BLUE);
+				title.setTextColor(Color.BLACK);
+				date.setTextColor(Color.BLACK);
 			}
 		}
 
