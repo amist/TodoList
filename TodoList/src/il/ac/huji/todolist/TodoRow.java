@@ -1,6 +1,7 @@
 package il.ac.huji.todolist;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class TodoRow {
 	protected String text;
@@ -22,7 +23,7 @@ public class TodoRow {
 	public String getDateString() {
 		if (this.date == null)
 			return "No due date";
-		int year = this.date.get(Calendar.YEAR);
+		int year = this.date.get(Calendar.YEAR) + 1900;
 		int month = this.date.get(Calendar.MONTH) + 1;
 		int day = this.date.get(Calendar.DAY_OF_MONTH);
 		String dateString = day + "/" + month + "/" + year;
@@ -38,5 +39,12 @@ public class TodoRow {
 		this.date.set(Calendar.DAY_OF_MONTH, Integer.parseInt(comp[0]));
 		this.date.set(Calendar.MONTH, Integer.parseInt(comp[1]) - 1);
 		this.date.set(Calendar.YEAR, Integer.parseInt(comp[2]));
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setDateFromDate(Date inp) {
+		this.date.set(Calendar.DAY_OF_MONTH, inp.getDate());
+		this.date.set(Calendar.MONTH, inp.getMonth());
+		this.date.set(Calendar.YEAR, inp.getYear());
 	}
 }

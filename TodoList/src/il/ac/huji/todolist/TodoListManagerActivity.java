@@ -1,6 +1,7 @@
 package il.ac.huji.todolist;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -52,11 +53,12 @@ public class TodoListManagerActivity extends Activity {
 		if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
 				String text = data.getStringExtra("title");
-				String date = data.getStringExtra("dueDate");
+//				String date = data.getStringExtra("dueDate");
+				Date date =  (Date) data.getSerializableExtra("dueDate");
 				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
 				TodoRow row = new TodoRow();
 				row.setText(text);
-				row.setDateFromString(date);
+				row.setDateFromDate(date);
 				adaptToDO.add(row);
 				adaptToDO.notifyDataSetChanged();
 			}

@@ -1,6 +1,8 @@
 package il.ac.huji.todolist;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -51,14 +53,21 @@ public class AddNewTodoItemActivity extends Activity {
 		TextView addItemTextView = (TextView) findViewById(R.id.edtNewItem);
 		String addItemText = addItemTextView.getText().toString();
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-		int year = datePicker.getYear();
-		int month = datePicker.getMonth() + 1;
-		int day = datePicker.getDayOfMonth();
-		String dateString = day + "/" + month + "/" + year;
-		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
+//		int year = datePicker.getYear();
+//		int month = datePicker.getMonth() + 1;
+//		int day = datePicker.getDayOfMonth();
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+		cal.set(Calendar.MONTH, datePicker.getMonth());
+		cal.set(Calendar.YEAR, datePicker.getYear());
+		Date date = new Date(cal.getTimeInMillis());
+//		String dateString = day + "/" + month + "/" + year;
+//		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("title", addItemText);
-		returnIntent.putExtra("dueDate", dateString);
+//		returnIntent.putExtra("dueDate", dateString);
+		returnIntent.putExtra("dueDate", date);
+		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + date);
 		setResult(RESULT_OK, returnIntent);
 		finish();
 	}
