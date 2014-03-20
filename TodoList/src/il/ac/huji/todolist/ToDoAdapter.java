@@ -70,7 +70,7 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 				Intent intent = new Intent(getContext(), ItemMenuActivity.class);
 				TodoRow row = (TodoRow) getItem(position);
 				intent.putExtra("title", row.getText());
-				intent.putExtra("date", row.getDateString());
+				intent.putExtra("dueDate", row.getDateString());
 				intent.putExtra("position", position);
 				((Activity) getContext()).startActivityForResult(intent, 2);
 //				AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

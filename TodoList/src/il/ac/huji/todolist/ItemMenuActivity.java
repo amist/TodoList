@@ -30,7 +30,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 //		Log.e("myDebug", "in onCreate of ItemMenuActivity. title = " + b.getString("title"));
 		String text = b.getString("title");
 		this.todoTitle = text;
-		String date = b.getString("date");
+		String date = b.getString("dueDate");
 		this.todoDate = date;
 		TextView title = (TextView) findViewById(R.id.itemMenuTitle);
 		title.setText(text);
@@ -107,8 +107,8 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 		Log.e("myDebug", "in onClick");
 		Log.e("myDebug", "pressed delete");
 		Intent returnIntent = new Intent();
-		returnIntent.putExtra("text", this.todoTitle);
-		returnIntent.putExtra("date", this.todoDate);
+		returnIntent.putExtra("title", this.todoTitle);
+		returnIntent.putExtra("dueDate", this.todoDate);
 		if (v.getId()==R.id.menuItemDelete) {
 			returnIntent.putExtra("action", "delete");
 		}

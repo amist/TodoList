@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 public class AddNewTodoItemActivity extends Activity {
 
-	private ArrayList<String> toDoList;
-	private ToDoAdapter<String> adaptToDO;
+//	private ArrayList<String> toDoList;
+//	private ToDoAdapter<String> adaptToDO;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,8 @@ public class AddNewTodoItemActivity extends Activity {
 		String dateString = day + "/" + month + "/" + year;
 		Log.e("myDebug", "in addItemToList. text = " + addItemText + ", date = " + dateString);
 		Intent returnIntent = new Intent();
-		returnIntent.putExtra("text", addItemText);
-		returnIntent.putExtra("date", dateString);
+		returnIntent.putExtra("title", addItemText);
+		returnIntent.putExtra("dueDate", dateString);
 		setResult(RESULT_OK, returnIntent);
 		finish();
 	}

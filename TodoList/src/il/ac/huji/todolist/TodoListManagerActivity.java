@@ -51,8 +51,8 @@ public class TodoListManagerActivity extends Activity {
 			return;
 		if (requestCode == 1) {
 			if (resultCode == RESULT_OK) {
-				String text = data.getStringExtra("text");
-				String date = data.getStringExtra("date");
+				String text = data.getStringExtra("title");
+				String date = data.getStringExtra("dueDate");
 				Log.e("myDebug", "onActivityResult. text = " + text + ", date = " + date);
 				TodoRow row = new TodoRow();
 				row.setText(text);
@@ -64,8 +64,8 @@ public class TodoListManagerActivity extends Activity {
 			}
 		}
 		if (requestCode == 2) {
-			String text = data.getStringExtra("text");
-			String date = data.getStringExtra("date");
+			String text = data.getStringExtra("title");
+			String date = data.getStringExtra("dueDate");
 			String action = data.getStringExtra("action");
 			Log.e("myDebug", "onActivityResult, after deletion. text = " + text + ", date = " + date);
 			if (action.equals("delete")) {
