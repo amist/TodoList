@@ -5,8 +5,11 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -15,6 +18,8 @@ public class TodoListManagerActivity extends Activity {
 
 	private ArrayList<TodoRow> toDoList;
 	private ToDoAdapter<TodoRow> adaptToDO;
+	private MyDBHelper dbHelper;
+	private MyDB db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +29,19 @@ public class TodoListManagerActivity extends Activity {
 		ListView list = (ListView) findViewById(R.id.lstTodoItems);
 
 		adaptToDO = new ToDoAdapter<TodoRow>(this, android.R.layout.simple_list_item_1, toDoList);
-
 		list.setAdapter(adaptToDO);
 
+		db = new MyDB(getBaseContext());
+		Cursor cursor = db.selectRecords();
+		while(cursor.moveToNext()) {
+			TodoRow row = new TodoRow();
+			row.setText(cursor.getString(cursor.getColumnIndex("title")));
+			Date date = new Date(cursor.getString(cursor.getColumnIndex("dueDate"))); 
+			row.setDateFromDate(date);
+			adaptToDO.add(row);
+			Log.w("myDebug", "onCreate of view. Added row: " + row.toString());
+		}
+		adaptToDO.notifyDataSetChanged();
 	}
 
 	@Override
@@ -57,6 +72,7 @@ public class TodoListManagerActivity extends Activity {
 				row.setDateFromDate(date);
 				adaptToDO.add(row);
 				adaptToDO.notifyDataSetChanged();
+				db.addItem(text, date);
 			}
 			if (resultCode == RESULT_CANCELED) {
 			}
