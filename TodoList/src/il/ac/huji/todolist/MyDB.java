@@ -41,7 +41,7 @@ public class MyDB {
 			mCursor.moveToFirst();
 
 		}
-		return mCursor; // iterate to get each value.
+		return mCursor;
 	}
 	
 	public long addItem(String title, Date dueDate) {
@@ -50,5 +50,9 @@ public class MyDB {
 		values.put(DATE, dueDate.toGMTString());
 		Log.w("myDebug", "addItem Create of DB. dueDate.toGMTString() = " + dueDate.toGMTString());
 		return database.insert(TABLE, null, values);
+	}
+
+	public void removeItem(int id) {
+		database.delete(TABLE, "_id=?", new String[]{Integer.toString(id)});
 	}
 }

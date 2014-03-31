@@ -83,12 +83,14 @@ public class TodoListManagerActivity extends Activity {
 			String text = data.getStringExtra("title");
 			String date = data.getStringExtra("dueDate");
 			String action = data.getStringExtra("action");
+			int id = data.getIntExtra("id", -1);
 			if (action.equals("delete")) {
 				Integer i = 0;
 				for (TodoRow row : toDoList) {
 					if (i.toString().equals(data.getStringExtra("position"))) {
 						adaptToDO.remove(row);
 						adaptToDO.notifyDataSetChanged();
+						db.removeItem(row.getId());
 						return;
 					}
 					i++;

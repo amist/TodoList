@@ -17,6 +17,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 	protected String todoTitle = "";
 	protected String todoDate = "";
 	protected String position = "";
+	protected int id = -1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 		String date = b.getString("dueDate");
 		this.todoDate = date;
 		this.position = b.getString("position");
+		this.id = b.getInt("id");
 		TextView title = (TextView) findViewById(R.id.itemMenuTitle);
 		title.setText(text);
 		Button call = (Button) findViewById(R.id.menuItemCall);
@@ -70,6 +72,7 @@ public class ItemMenuActivity extends Activity implements OnClickListener {
 		returnIntent.putExtra("title", this.todoTitle);
 		returnIntent.putExtra("dueDate", this.todoDate);
 		returnIntent.putExtra("position", this.position);
+		returnIntent.putExtra("id", this.id);
 		if (v.getId()==R.id.menuItemDelete) {
 			returnIntent.putExtra("action", "delete");
 		}

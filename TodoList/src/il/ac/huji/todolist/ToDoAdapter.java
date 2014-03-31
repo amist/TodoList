@@ -60,6 +60,7 @@ public class ToDoAdapter<E> extends ArrayAdapter<E> {
 				intent.putExtra("title", row.getText());
 				intent.putExtra("dueDate", row.getDateString());
 				intent.putExtra("position", String.valueOf(position));
+				intent.putExtra("id", row.getId());
 				((Activity) getContext()).startActivityForResult(intent, 2);
 				return true;
 			}
