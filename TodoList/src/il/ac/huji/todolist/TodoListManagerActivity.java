@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
 
 public class TodoListManagerActivity extends Activity {
 
@@ -30,6 +32,8 @@ public class TodoListManagerActivity extends Activity {
 
 		adaptToDO = new ToDoAdapter<TodoRow>(this, android.R.layout.simple_list_item_1, toDoList);
 		list.setAdapter(adaptToDO);
+		
+		Parse.initialize(this, "8LccucGCxH90FYy5v7bn9H59MqAnfmGP5aqvcl4R", "Rcz0YER1ZjCpN1up4NNitym1eDgM36DybjpDRo0z");
 
 		db = new MyDB(getBaseContext());
 		Cursor cursor = db.selectRecords();
