@@ -9,13 +9,13 @@ import android.util.Log;
 
 public class MyDBHelper extends SQLiteOpenHelper {
 
-	private static final String DATABASE_NAME = "TodoList";
+	private static final String DATABASE_NAME = "todo_db";
 
 	private static final int DATABASE_VERSION = 3;
 
 	// Database creation sql statement
 //	private static final String DATABASE_CREATE = "create table TodoList ( _id integer primary key,name text not null);";
-	private static final String DATABASE_CREATE = "create table TodoList (title text ,dueDate text);";
+	private static final String DATABASE_CREATE = "create table todo (_id integer primary key autoincrement, title text ,dueDate text);";
 
 	public MyDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,7 +33,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		Log.w("myDebug", "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS TodoList");
+		database.execSQL("DROP TABLE IF EXISTS todo");
 		onCreate(database);
 	}
 }

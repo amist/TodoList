@@ -36,8 +36,10 @@ public class TodoListManagerActivity extends Activity {
 		while(cursor.moveToNext()) {
 			TodoRow row = new TodoRow();
 			row.setText(cursor.getString(cursor.getColumnIndex("title")));
-			Date date = new Date(cursor.getString(cursor.getColumnIndex("dueDate"))); 
+			Date date = new Date(cursor.getString(cursor.getColumnIndex("dueDate")));
 			row.setDateFromDate(date);
+			int id = cursor.getInt(cursor.getColumnIndex("_id"));
+			row.setId(id);
 			adaptToDO.add(row);
 			Log.w("myDebug", "onCreate of view. Added row: " + row.toString());
 		}

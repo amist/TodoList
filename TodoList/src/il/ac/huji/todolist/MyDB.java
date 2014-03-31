@@ -13,9 +13,10 @@ public class MyDB {
 	private MyDBHelper dbHelper;
 	private SQLiteDatabase database;
 
-	public final static String TABLE = "TodoList"; // name of table
-	public final static String TITLE = "title"; // id value for employee
-	public final static String DATE = "dueDAte"; // name of employee
+	public final static String TABLE = "todo";
+	public final static String ID = "_id";
+	public final static String TITLE = "title";
+	public final static String DATE = "dueDAte";
 
 	/**
 	 * 
@@ -34,7 +35,7 @@ public class MyDB {
 	}
 
 	public Cursor selectRecords() {
-		String[] cols = new String[] { TITLE, DATE };
+		String[] cols = new String[] { ID, TITLE, DATE };
 		Cursor mCursor = database.query(true, TABLE, cols, null, null, null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();

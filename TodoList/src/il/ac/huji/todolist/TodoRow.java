@@ -4,9 +4,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TodoRow {
+	protected int id;
 	protected String text;
 	protected Calendar date = Calendar.getInstance();
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getText() {
 		return text;
 	}
@@ -31,7 +38,7 @@ public class TodoRow {
 	}
 	
 	public String toString() {
-		return this.text + " - " + this.getDateString();
+		return this.id + " - " + this.text + " - " + this.getDateString();
 	}
 	
 	public void setDateFromString(String strDate) {
