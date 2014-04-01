@@ -11,11 +11,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "todo_db";
 
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	// Database creation sql statement
 //	private static final String DATABASE_CREATE = "create table TodoList ( _id integer primary key,name text not null);";
-	private static final String DATABASE_CREATE = "create table todo (_id integer primary key autoincrement, title text ,dueDate text);";
+	private static final String DATABASE_CREATE = "create table todo (_id integer primary key autoincrement, title text ,due long);";
 
 	public MyDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

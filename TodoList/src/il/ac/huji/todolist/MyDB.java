@@ -24,7 +24,7 @@ public class MyDB {
 	public final static String TABLE = "todo";
 	public final static String ID = "_id";
 	public final static String TITLE = "title";
-	public final static String DATE = "dueDAte";
+	public final static String DATE = "due";
 
 	/**
 	 * 
@@ -55,13 +55,15 @@ public class MyDB {
 	public long addItem(String title, Date dueDate) {
 		ContentValues values = new ContentValues();
 		values.put(TITLE, title);
-		values.put(DATE, dueDate.toGMTString());
+//		values.put(DATE, dueDate.toGMTString());
+		values.put(DATE, dueDate.parse(dueDate.toGMTString()));
 		Log.w("myDebug", "addItem Create of DB. dueDate.toGMTString() = " + dueDate.toGMTString());
 		long id = database.insert(TABLE, null, values);
 
 		ParseObject testObject = new ParseObject(TABLE);
 		testObject.put(TITLE, title);
-		testObject.put(DATE, dueDate.toGMTString());
+//		testObject.put(DATE, dueDate.toGMTString());
+		testObject.put(DATE, dueDate.parse(dueDate.toGMTString()));
 		testObject.put("SQLiteId", id);
 		testObject.saveInBackground();
 

@@ -47,7 +47,8 @@ public class TodoListManagerActivity extends Activity {
 		while(cursor.moveToNext()) {
 			TodoRow row = new TodoRow();
 			row.setText(cursor.getString(cursor.getColumnIndex("title")));
-			Date date = new Date(cursor.getString(cursor.getColumnIndex("dueDate")));
+//			Date date = new Date(cursor.getString(cursor.getColumnIndex("due")));
+			Date date = new Date(cursor.getLong(cursor.getColumnIndex("due")));
 			row.setDateFromDate(date);
 			int id = cursor.getInt(cursor.getColumnIndex("_id"));
 			row.setId(id);
