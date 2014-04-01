@@ -11,20 +11,23 @@ import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class MyDB {
 
 	private MyDBHelper dbHelper;
 	private SQLiteDatabase database;
 
-	public final static String TABLE = "todo";
-	public final static String ID = "_id";
-	public final static String TITLE = "title";
-	public final static String DATE = "due";
+	private final static String TABLE = "todo";
+	private final static String ID = "_id";
+	private final static String TITLE = "title";
+	private final static String DATE = "due";
+	private ParseACL defaultACL = new ParseACL();
 
 	/**
 	 * 
@@ -33,6 +36,12 @@ public class MyDB {
 	public MyDB(Context context) {
 		dbHelper = new MyDBHelper(context);
 		database = dbHelper.getWritableDatabase();
+		
+		ParseUser.enableAutomaticUser();
+//		ParseACL defaultACL = new ParseACL();
+		// Optionally enable public read access while disabling public write access.
+		// defaultACL.setPublicReadAccess(true);
+		ParseACL.setDefaultACL(defaultACL, true);
 	}
 
 	public long createRecords(String title, String dueDate) {
@@ -55,17 +64,17 @@ public class MyDB {
 	public long addItem(String title, Date dueDate) {
 		ContentValues values = new ContentValues();
 		values.put(TITLE, title);
-//		values.put(DATE, dueDate.toGMTString());
 		values.put(DATE, dueDate.parse(dueDate.toGMTString()));
 		Log.w("myDebug", "addItem Create of DB. dueDate.toGMTString() = " + dueDate.toGMTString());
 		long id = database.insert(TABLE, null, values);
 
-		ParseObject testObject = new ParseObject(TABLE);
-		testObject.put(TITLE, title);
-//		testObject.put(DATE, dueDate.toGMTString());
-		testObject.put(DATE, dueDate.parse(dueDate.toGMTString()));
-		testObject.put("SQLiteId", id);
-		testObject.saveInBackground();
+		ParseObject todoObject = new ParseObject(TABLE);
+		todoObject.put(TITLE, title);
+		todoObject.put(DATE, dueDate.parse(dueDate.toGMTString()));
+		todoObject.put("SQLiteId", id);
+		todoObject.put("user", ParseUser.getCurrentUser());
+		todoObject.setACL(new ParseACL(ParseUser.getCurrentUser()));
+		todoObject.saveInBackground();
 
 		return id;
 	}
@@ -87,8 +96,6 @@ public class MyDB {
 			}
 		});
 
-		// ParseObject = toDelete = ParseObject.
-//		ParseObject.createWithoutData(TABLE, String.valueOf(id)).deleteEventually();
 		database.delete(TABLE, "_id=?", new String[] { Integer.toString(id) });
 	}
 }

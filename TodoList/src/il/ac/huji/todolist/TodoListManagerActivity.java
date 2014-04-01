@@ -36,11 +36,11 @@ public class TodoListManagerActivity extends Activity {
 		list.setAdapter(adaptToDO);
 		
 		Parse.initialize(this, "8LccucGCxH90FYy5v7bn9H59MqAnfmGP5aqvcl4R", "Rcz0YER1ZjCpN1up4NNitym1eDgM36DybjpDRo0z");
-		ParseUser.enableAutomaticUser();
-		ParseACL defaultACL = new ParseACL();
-		// Optionally enable public read access while disabling public write access.
-		// defaultACL.setPublicReadAccess(true);
-		ParseACL.setDefaultACL(defaultACL, true);
+//		ParseUser.enableAutomaticUser();
+//		ParseACL defaultACL = new ParseACL();
+//		// Optionally enable public read access while disabling public write access.
+//		// defaultACL.setPublicReadAccess(true);
+//		ParseACL.setDefaultACL(defaultACL, true);
 
 		db = new MyDB(getBaseContext());
 		Cursor cursor = db.selectRecords();
