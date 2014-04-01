@@ -74,7 +74,7 @@ public class MyDB {
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> testList, ParseException e) {
 				if (e == null) {
-					Log.d("myDebug", "Retrieved " + testList.size() + " objects");
+					Log.d("myDebug", "Retrieved " + testList.size() + " objects from parse.com");
 					for (int i = 0; i < testList.size(); i++) {
 						ParseObject tempTest = testList.get(i);
 						tempTest.deleteInBackground();
