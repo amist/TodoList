@@ -9,9 +9,9 @@ public class ListAsyncLoader extends AsyncTask<Void, TodoRow, Void> {
 
 	private Cursor cursor;	
 	private MyDB db;
-	private ToDoAdapter adapter;
+	private ToDoAdapter<TodoRow> adapter;
 
-	public ListAsyncLoader(MyDB db, ToDoAdapter adapter)
+	public ListAsyncLoader(MyDB db, ToDoAdapter<TodoRow> adapter)
 	{
 		super();
 		this.db = db;
