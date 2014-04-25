@@ -1,6 +1,5 @@
 package il.ac.huji.todolist;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import android.database.Cursor;
@@ -9,28 +8,25 @@ import android.os.AsyncTask;
 public class ListAsyncLoader extends AsyncTask<Void, TodoRow, Void> {
 
 	private Cursor cursor;	
-	private MyDB sqlite;
-	private ToDoAdapter listAdapter;
+	private MyDB db;
+	private ToDoAdapter adapter;
 
-	public ListAsyncLoader(MyDB _sqlite, ToDoAdapter _adapetr)
+	public ListAsyncLoader(MyDB db, ToDoAdapter adapter)
 	{
 		super();
-
-		sqlite = _sqlite;
-		listAdapter = _adapetr;
+		this.db = db;
+		this.adapter = adapter;
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		listAdapter.clear();
-
+		adapter.clear();
 	}
-
 
 	@Override
 	protected Void doInBackground(Void... params) {
-		cursor = sqlite.getTableCursor();
+		cursor = db.getTableCursor();
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast())
 		{
@@ -46,18 +42,15 @@ public class ListAsyncLoader extends AsyncTask<Void, TodoRow, Void> {
 		return null;
 	}
 
-
 	@Override
 	protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
 	}
 
 	@Override
-	protected void onProgressUpdate(TodoRow... values) {
-		super.onProgressUpdate(values);
-
-		listAdapter.add(values[0]);
-		listAdapter.notifyDataSetChanged();
+	protected void onProgressUpdate(TodoRow... items) {
+		super.onProgressUpdate(items);
+		adapter.add(items[0]);
+		adapter.notifyDataSetChanged();
 	}
-
 }

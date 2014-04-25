@@ -12,6 +12,7 @@ public class TodoRow {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public TodoRow(String text, Date date, int id) {
 		this.id = id;
 		this.text = text;

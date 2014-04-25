@@ -5,24 +5,16 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseAnalytics;
-import com.parse.ParseUser;
 
 public class TodoListManagerActivity extends Activity {
 
 	private ArrayList<TodoRow> toDoList;
 	private ToDoAdapter<TodoRow> adaptToDO;
-	private MyDBHelper dbHelper;
 	private MyDB db;
 	ListAsyncLoader loader;
 
@@ -35,28 +27,7 @@ public class TodoListManagerActivity extends Activity {
 
 		adaptToDO = new ToDoAdapter<TodoRow>(this, android.R.layout.simple_list_item_1, toDoList);
 		list.setAdapter(adaptToDO);
-		
-//		Parse.initialize(this, "8LccucGCxH90FYy5v7bn9H59MqAnfmGP5aqvcl4R", "Rcz0YER1ZjCpN1up4NNitym1eDgM36DybjpDRo0z");
-////		ParseUser.enableAutomaticUser();
-////		ParseACL defaultACL = new ParseACL();
-////		// Optionally enable public read access while disabling public write access.
-////		// defaultACL.setPublicReadAccess(true);
-////		ParseACL.setDefaultACL(defaultACL, true);
-
 		db = new MyDB(getBaseContext());
-//		Cursor cursor = db.selectRecords();
-//		while(cursor.moveToNext()) {
-//			TodoRow row = new TodoRow();
-//			row.setText(cursor.getString(cursor.getColumnIndex("title")));
-////			Date date = new Date(cursor.getString(cursor.getColumnIndex("due")));
-//			Date date = new Date(cursor.getLong(cursor.getColumnIndex("due")));
-//			row.setDateFromDate(date);
-//			int id = cursor.getInt(cursor.getColumnIndex("_id"));
-//			row.setId(id);
-//			adaptToDO.add(row);
-//			Log.w("myDebug", "onCreate of view. Added row: " + row.toString());
-//		}
-//		adaptToDO.notifyDataSetChanged();
 		
 		loader = new ListAsyncLoader(db, adaptToDO);
 		loader.execute();
@@ -97,9 +68,7 @@ public class TodoListManagerActivity extends Activity {
 		}
 		if (requestCode == 2) {
 			String text = data.getStringExtra("title");
-			String date = data.getStringExtra("dueDate");
 			String action = data.getStringExtra("action");
-			int id = data.getIntExtra("id", -1);
 			if (action.equals("delete")) {
 				Integer i = 0;
 				for (TodoRow row : toDoList) {

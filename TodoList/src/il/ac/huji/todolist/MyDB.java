@@ -1,7 +1,6 @@
 package il.ac.huji.todolist;
 
 import java.util.Date;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,13 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseACL;
-import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 public class MyDB {
@@ -61,10 +54,11 @@ public class MyDB {
 		return mCursor;
 	}
 
+	@SuppressWarnings("deprecation")
 	public long addItem(String title, Date dueDate) {
 		ContentValues values = new ContentValues();
 		values.put(TITLE, title);
-		values.put(DATE, dueDate.parse(dueDate.toGMTString()));
+		values.put(DATE, Date.parse(dueDate.toGMTString()));
 		Log.w("myDebug", "addItem Create of DB. dueDate.toGMTString() = " + dueDate.toGMTString());
 		long id = database.insert(TABLE, null, values);
 
