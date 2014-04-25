@@ -68,33 +68,33 @@ public class MyDB {
 		Log.w("myDebug", "addItem Create of DB. dueDate.toGMTString() = " + dueDate.toGMTString());
 		long id = database.insert(TABLE, null, values);
 
-		ParseObject todoObject = new ParseObject(TABLE);
-		todoObject.put(TITLE, title);
-		todoObject.put(DATE, dueDate.parse(dueDate.toGMTString()));
-		todoObject.put("SQLiteId", id);
-		todoObject.put("user", ParseUser.getCurrentUser());
-		todoObject.setACL(new ParseACL(ParseUser.getCurrentUser()));
-		todoObject.saveInBackground();
+//		ParseObject todoObject = new ParseObject(TABLE);
+//		todoObject.put(TITLE, title);
+//		todoObject.put(DATE, dueDate.parse(dueDate.toGMTString()));
+//		todoObject.put("SQLiteId", id);
+//		todoObject.put("user", ParseUser.getCurrentUser());
+//		todoObject.setACL(new ParseACL(ParseUser.getCurrentUser()));
+//		todoObject.saveInBackground();
 
 		return id;
 	}
 
 	public void removeItem(int id) {
-		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(TABLE);
-		query.whereEqualTo("SQLiteId", id);
-		query.findInBackground(new FindCallback<ParseObject>() {
-			public void done(List<ParseObject> testList, ParseException e) {
-				if (e == null) {
-					Log.d("myDebug", "Retrieved " + testList.size() + " objects from parse.com");
-					for (int i = 0; i < testList.size(); i++) {
-						ParseObject tempTest = testList.get(i);
-						tempTest.deleteInBackground();
-					}
-				} else {
-					Log.d("myDebug", "Error: " + e.getMessage());
-				}
-			}
-		});
+//		ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(TABLE);
+//		query.whereEqualTo("SQLiteId", id);
+//		query.findInBackground(new FindCallback<ParseObject>() {
+//			public void done(List<ParseObject> testList, ParseException e) {
+//				if (e == null) {
+//					Log.d("myDebug", "Retrieved " + testList.size() + " objects from parse.com");
+//					for (int i = 0; i < testList.size(); i++) {
+//						ParseObject tempTest = testList.get(i);
+//						tempTest.deleteInBackground();
+//					}
+//				} else {
+//					Log.d("myDebug", "Error: " + e.getMessage());
+//				}
+//			}
+//		});
 
 		database.delete(TABLE, "_id=?", new String[] { Integer.toString(id) });
 	}
