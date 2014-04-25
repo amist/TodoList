@@ -8,6 +8,18 @@ public class TodoRow {
 	protected String text;
 	protected Calendar date = Calendar.getInstance();
 	
+	public TodoRow() {
+		
+	}
+	
+	public TodoRow(String text, Date date, int id) {
+		this.id = id;
+		this.text = text;
+		this.date.set(Calendar.DAY_OF_MONTH, date.getDate());
+		this.date.set(Calendar.MONTH, date.getMonth());
+		this.date.set(Calendar.YEAR, date.getYear() + 1900);
+	}
+	
 	public int getId() {
 		return id;
 	}

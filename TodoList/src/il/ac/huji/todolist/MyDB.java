@@ -98,4 +98,9 @@ public class MyDB {
 
 		database.delete(TABLE, "_id=?", new String[] { Integer.toString(id) });
 	}
+
+	public Cursor getTableCursor()
+	{
+		return database.query("todo", new String[] {"_id","title", "due"}, null, null, null, null, null);
+	}
 }

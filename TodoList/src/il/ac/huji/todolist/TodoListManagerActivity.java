@@ -24,6 +24,7 @@ public class TodoListManagerActivity extends Activity {
 	private ToDoAdapter<TodoRow> adaptToDO;
 	private MyDBHelper dbHelper;
 	private MyDB db;
+	ListAsyncLoader loader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +36,30 @@ public class TodoListManagerActivity extends Activity {
 		adaptToDO = new ToDoAdapter<TodoRow>(this, android.R.layout.simple_list_item_1, toDoList);
 		list.setAdapter(adaptToDO);
 		
-		Parse.initialize(this, "8LccucGCxH90FYy5v7bn9H59MqAnfmGP5aqvcl4R", "Rcz0YER1ZjCpN1up4NNitym1eDgM36DybjpDRo0z");
-//		ParseUser.enableAutomaticUser();
-//		ParseACL defaultACL = new ParseACL();
-//		// Optionally enable public read access while disabling public write access.
-//		// defaultACL.setPublicReadAccess(true);
-//		ParseACL.setDefaultACL(defaultACL, true);
+//		Parse.initialize(this, "8LccucGCxH90FYy5v7bn9H59MqAnfmGP5aqvcl4R", "Rcz0YER1ZjCpN1up4NNitym1eDgM36DybjpDRo0z");
+////		ParseUser.enableAutomaticUser();
+////		ParseACL defaultACL = new ParseACL();
+////		// Optionally enable public read access while disabling public write access.
+////		// defaultACL.setPublicReadAccess(true);
+////		ParseACL.setDefaultACL(defaultACL, true);
 
 		db = new MyDB(getBaseContext());
-		Cursor cursor = db.selectRecords();
-		while(cursor.moveToNext()) {
-			TodoRow row = new TodoRow();
-			row.setText(cursor.getString(cursor.getColumnIndex("title")));
-//			Date date = new Date(cursor.getString(cursor.getColumnIndex("due")));
-			Date date = new Date(cursor.getLong(cursor.getColumnIndex("due")));
-			row.setDateFromDate(date);
-			int id = cursor.getInt(cursor.getColumnIndex("_id"));
-			row.setId(id);
-			adaptToDO.add(row);
-			Log.w("myDebug", "onCreate of view. Added row: " + row.toString());
-		}
-		adaptToDO.notifyDataSetChanged();
+//		Cursor cursor = db.selectRecords();
+//		while(cursor.moveToNext()) {
+//			TodoRow row = new TodoRow();
+//			row.setText(cursor.getString(cursor.getColumnIndex("title")));
+////			Date date = new Date(cursor.getString(cursor.getColumnIndex("due")));
+//			Date date = new Date(cursor.getLong(cursor.getColumnIndex("due")));
+//			row.setDateFromDate(date);
+//			int id = cursor.getInt(cursor.getColumnIndex("_id"));
+//			row.setId(id);
+//			adaptToDO.add(row);
+//			Log.w("myDebug", "onCreate of view. Added row: " + row.toString());
+//		}
+//		adaptToDO.notifyDataSetChanged();
+		
+		loader = new ListAsyncLoader(db, adaptToDO);
+		loader.execute();
 	}
 
 	@Override
